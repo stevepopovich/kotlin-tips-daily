@@ -1,15 +1,18 @@
+name: Publish to Google Play Store
 
 on:
   push:
     branches:
       - main
 jobs:
-  publish_to_play_store:
-    name: Upload Android Release to Play Store
-    uses: r0adkll/upload-google-play@v1
-    with:
-      serviceAccountJson: ${{ SERVICE_ACCOUNT_JSON }}
-      packageName: com.popovich.kotlintipsdaily
-      releaseFiles: app/build/outputs/bundle/release/*.aab
-      track: production
-      mappingFile: app/build/outputs/mapping/release/mapping.txt
+  your_npm_job_name:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Upload Android Release to Play Store
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJson: ${{ SERVICE_ACCOUNT_JSON }}
+          packageName: com.popovich.kotlintipsdaily
+          releaseFiles: app/build/outputs/bundle/release/*.aab
+          track: production
+          mappingFile: app/build/outputs/mapping/release/mapping.txt
