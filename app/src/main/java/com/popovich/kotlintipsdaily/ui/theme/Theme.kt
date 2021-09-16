@@ -1,4 +1,4 @@
-package com.example.kotlintipsdaily.ui.theme
+package com.popovich.kotlintipsdaily.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme

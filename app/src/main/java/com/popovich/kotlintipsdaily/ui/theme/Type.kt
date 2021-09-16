@@ -1,4 +1,4 @@
-package com.example.kotlintipsdaily.ui.theme
+package com.popovich.kotlintipsdaily.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
