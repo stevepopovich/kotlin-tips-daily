@@ -21,6 +21,12 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+
+        TipsService.scheduleNotification(applicationContext)
+    }
 }
 
 @Composable

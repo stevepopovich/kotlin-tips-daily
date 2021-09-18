@@ -4,11 +4,19 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('/Users/stevenpopovich/.android/debug.keystore')
+            storePassword 'bwJ5@VqNdx$Uyj'
+            keyPassword 'bwJ5@VqNdx$Uyj'
+            keyAlias 'mykeystore'
+        }
+    }
     compileSdk 31
 
     defaultConfig {
         applicationId "com.popovich.kotlintipsdaily"
-        minSdk 21
+        minSdk 23
         targetSdk 31
         versionCode 1
         versionName "1.0"
@@ -55,6 +63,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
+    implementation 'androidx.work:work-runtime-ktx:2.6.0'
 
     testImplementation 'junit:junit:4.13.2'
 
