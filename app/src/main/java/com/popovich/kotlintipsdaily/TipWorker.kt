@@ -1,15 +1,15 @@
 package com.popovich.kotlintipsdaily
 
-import android.content.Context
-import androidx.work.Worker
-import androidx.work.WorkerParameters
-import android.app.PendingIntent
-import android.content.Intent
-import android.app.NotificationManager
 import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.content.getSystemService
+import androidx.work.Worker
+import androidx.work.WorkerParameters
 import kotlin.random.Random
 
 const val CHANNEL_ID = "kotlin_tips_daily"

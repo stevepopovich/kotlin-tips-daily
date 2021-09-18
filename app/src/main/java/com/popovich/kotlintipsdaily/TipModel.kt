@@ -1,7 +1,7 @@
 package com.popovich.kotlintipsdaily
 
 import android.net.Uri
-import java.util.*
+import java.util.UUID
 
 typealias TipID = UUID
 

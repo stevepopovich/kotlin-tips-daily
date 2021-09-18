@@ -4,8 +4,7 @@ import android.content.Context
 import android.net.Uri
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
-import androidx.work.WorkRequest
-import java.util.*
+import java.util.UUID
 
 class TipsService {
     companion object {
@@ -27,8 +26,4 @@ class TipsService {
             workManager.enqueue(tipWorkRequest)
         }
     }
-
-
-
-
 }
