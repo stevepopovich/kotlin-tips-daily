@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "997916229451",
+    "project_id": "kotlin-tips-daily",
+    "storage_bucket": "kotlin-tips-daily.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:997916229451:android:5a2d502af29890aed2f2ce",
+        "android_client_info": {
+          "package_name": "com.popovich.kotlintipsdaily"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "997916229451-r4ot1fmj927lq3englsleonb9rp12omh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLf4oQtGXU4Vs7WRPY4YW5qvoUpL8bes0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "997916229451-r4ot1fmj927lq3englsleonb9rp12omh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
