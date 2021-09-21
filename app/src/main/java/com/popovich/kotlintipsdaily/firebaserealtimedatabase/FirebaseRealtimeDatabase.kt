@@ -29,6 +29,4 @@ class FirebaseRealtimeDatabase {
             tipsDatabase.addValueEventListener(tipsListener)
         }
     }
-
-
 }

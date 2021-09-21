@@ -1,7 +1,5 @@
 package com.popovich.kotlintipsdaily.firebaserealtimedatabase
 
-import androidx.room.ColumnInfo
-import androidx.room.PrimaryKey
 import com.google.firebase.database.IgnoreExtraProperties
 
 @IgnoreExtraProperties
