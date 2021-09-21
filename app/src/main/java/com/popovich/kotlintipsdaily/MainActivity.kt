@@ -8,7 +8,9 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.popovich.kotlintipsdaily.firebaserealtimedatabase.FirebaseRealtimeDatabase
+import androidx.room.Room
+import com.popovich.kotlintipsdaily.database.TipSyncService
+import com.popovich.kotlintipsdaily.database.room.AppDatabase
 import com.popovich.kotlintipsdaily.ui.theme.KotlinTipsDailyTheme
 
 class MainActivity : ComponentActivity() {
@@ -26,8 +28,13 @@ class MainActivity : ComponentActivity() {
     override fun onResume() {
         super.onResume()
 
-        TipsService.scheduleNotification(applicationContext)
-        FirebaseRealtimeDatabase.getTips()
+        AppDatabase.database = Room.databaseBuilder(
+            applicationContext,
+            AppDatabase::class.java, "tips-database"
+        ).build()
+
+        TipSyncService.start()
+//        TipsService.scheduleNotification(applicationContext)
     }
 }
 

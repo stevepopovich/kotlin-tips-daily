@@ -1,4 +1,4 @@
-package com.popovich.kotlintipsdaily.firebaserealtimedatabase
+package com.popovich.kotlintipsdaily.database.firebaserealtimedatabase
 
 import com.google.firebase.database.IgnoreExtraProperties
 

@@ -1,4 +1,4 @@
-package com.popovich.kotlintipsdaily.room
+package com.popovich.kotlintipsdaily.database.room
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

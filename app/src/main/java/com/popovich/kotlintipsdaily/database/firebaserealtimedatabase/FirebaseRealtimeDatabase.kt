@@ -1,4 +1,4 @@
-package com.popovich.kotlintipsdaily.firebaserealtimedatabase
+package com.popovich.kotlintipsdaily.database.firebaserealtimedatabase
 
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -6,6 +6,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.popovich.kotlintipsdaily.database.TipSyncService
 
 class FirebaseRealtimeDatabase {
     companion object {
@@ -18,14 +19,19 @@ class FirebaseRealtimeDatabase {
             tipsDatabase.keepSynced(true)
         }
 
-        fun getTips() {
+        fun setupTipsListener() {
             val tipsListener = object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    val thing = dataSnapshot.value as Map<String, TipFirebaseModel>
+                    TipSyncService.syncTips(
+                        dataSnapshot.value as Map<String, HashMap<String, String>>
+                    )
                 }
 
-                override fun onCancelled(databaseError: DatabaseError) {}
+                override fun onCancelled(databaseError: DatabaseError) {
+                    // TODO
+                }
             }
+
             tipsDatabase.addValueEventListener(tipsListener)
         }
     }
