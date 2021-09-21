@@ -30,7 +30,8 @@ class MainActivity : ComponentActivity() {
 
         AppDatabase.database = Room.databaseBuilder(
             applicationContext,
-            AppDatabase::class.java, "tips-database"
+            AppDatabase::class.java,
+            "tips-database"
         ).build()
 
         TipSyncService.start()

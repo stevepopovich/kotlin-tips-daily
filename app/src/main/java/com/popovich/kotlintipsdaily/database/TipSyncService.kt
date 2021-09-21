@@ -2,11 +2,8 @@ package com.popovich.kotlintipsdaily.database
 
 import android.net.Uri
 import com.popovich.kotlintipsdaily.database.firebaserealtimedatabase.FirebaseRealtimeDatabase
-import com.popovich.kotlintipsdaily.database.firebaserealtimedatabase.TipFirebaseModel
 import com.popovich.kotlintipsdaily.database.room.AppDatabase
 import com.popovich.kotlintipsdaily.database.room.TipEntity
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 class TipSyncService {
@@ -41,7 +38,6 @@ private val Map.Entry<String, HashMap<String, String>>.toRoomEntity: TipEntity?
         val content = this.value["content"]
         val link = this.value["link"]
 
-
         return if (title != null &&
             content != null &&
             link != null &&
@@ -55,6 +51,4 @@ private val Map.Entry<String, HashMap<String, String>>.toRoomEntity: TipEntity?
                 hasBeenDisplayed = false
             )
         } else null
-
     }
-
