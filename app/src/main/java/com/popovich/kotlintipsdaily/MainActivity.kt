@@ -23,10 +23,6 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
 
         AppDatabase.database = Room.databaseBuilder(
             applicationContext,
@@ -34,8 +30,7 @@ class MainActivity : ComponentActivity() {
             "tips-database"
         ).build()
 
-        TipSyncService.start()
-//        TipsService.scheduleNotification(applicationContext)
+        TipSyncService.start(applicationContext)
     }
 }
 

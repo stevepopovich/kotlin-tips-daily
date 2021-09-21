@@ -8,16 +8,25 @@ import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.content.getSystemService
-import androidx.work.Worker
+import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
+import com.popovich.kotlintipsdaily.database.TipService
 import kotlin.random.Random
 
 const val CHANNEL_ID = "kotlin_tips_daily"
 
-class TipWorker(context: Context, params: WorkerParameters) : Worker(context, params) {
-    override fun doWork(): Result {
-        createNotificationChannel(applicationContext)
-        createNotification(applicationContext, TipsService.getNewRandomTip())
+class TipWorker(context: Context, params: WorkerParameters) : CoroutineWorker(context, params) {
+    private val notificationManager = context.getSystemService<NotificationManager>()!!
+
+    override suspend fun doWork(): Result {
+        val randomTip = TipService.getRandomTipNotDisplayed()
+        randomTip?.let {
+            createNotificationChannel(applicationContext)
+            createNotification(applicationContext, it)
+            TipsNotificationService.scheduleNotification(applicationContext)
+            TipService.markTipAsDisplayed(it)
+        }
+
         return Result.success()
     }
 
@@ -29,7 +38,6 @@ class TipWorker(context: Context, params: WorkerParameters) : Worker(context, pa
             val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
                 description = descriptionText
             }
-            val notificationManager = context.getSystemService<NotificationManager>()!!
             notificationManager.createNotificationChannel(channel)
         }
     }
@@ -42,11 +50,9 @@ class TipWorker(context: Context, params: WorkerParameters) : Worker(context, pa
             .setAutoCancel(true)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
-        val notificationManager = context.getSystemService<NotificationManager>()!!
-
         val resultIntent = Intent(Intent.ACTION_VIEW)
         resultIntent.data = tip.link
-        val pending = PendingIntent.getActivity(context, 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+        val pending = PendingIntent.getActivity(context, 0, resultIntent, PendingIntent.FLAG_ONE_SHOT)
         builder.setContentIntent(pending)
 
         notificationManager.notify(

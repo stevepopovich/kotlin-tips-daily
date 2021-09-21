@@ -7,7 +7,7 @@ import androidx.room.Update
 
 @Dao
 interface TipDao {
-    @Query("select * from tipentity where hasBeenDisplayed = 'false' limit 1")
+    @Query("select * from tipentity where hasBeenDisplayed = '0' order by random() limit 1")
     suspend fun getRandomTipNotDisplayed(): TipEntity?
 
     @Query("select id from tipentity")

@@ -1,5 +1,6 @@
 package com.popovich.kotlintipsdaily.database.firebaserealtimedatabase
 
+import android.content.Context
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -19,11 +20,12 @@ class FirebaseRealtimeDatabase {
             tipsDatabase.keepSynced(true)
         }
 
-        fun setupTipsListener() {
+        fun setupTipsListener(context: Context) {
             val tipsListener = object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     TipSyncService.syncTips(
-                        dataSnapshot.value as Map<String, HashMap<String, String>>
+                        dataSnapshot.value as Map<String, HashMap<String, String>>,
+                        context
                     )
                 }
 

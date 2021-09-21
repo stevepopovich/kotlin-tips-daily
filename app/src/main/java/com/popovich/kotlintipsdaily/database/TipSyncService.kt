@@ -1,6 +1,8 @@
 package com.popovich.kotlintipsdaily.database
 
+import android.content.Context
 import android.net.Uri
+import com.popovich.kotlintipsdaily.TipsNotificationService
 import com.popovich.kotlintipsdaily.database.firebaserealtimedatabase.FirebaseRealtimeDatabase
 import com.popovich.kotlintipsdaily.database.room.AppDatabase
 import com.popovich.kotlintipsdaily.database.room.TipEntity
@@ -8,17 +10,18 @@ import kotlinx.coroutines.runBlocking
 
 class TipSyncService {
     companion object {
-        fun start() {
-            FirebaseRealtimeDatabase.setupTipsListener()
+        fun start(context: Context) {
+            FirebaseRealtimeDatabase.setupTipsListener(context)
         }
 
-        fun syncTips(firebaseTips: Map<String, HashMap<String, String>>) {
+        fun syncTips(firebaseTips: Map<String, HashMap<String, String>>, context: Context) {
             runBlocking {
                 val tipDao = AppDatabase.database.tipDao()
                 val allSyncedTipIds = tipDao.getAllIds()
                 val notSyncedFirebaseTips = firebaseTips.entries.filter { !allSyncedTipIds.contains(it.key) }
 
                 tipDao.insertAll(notSyncedFirebaseTips.mapNotNull { it.toRoomEntity })
+                TipsNotificationService.scheduleNotification(context)
             }
         }
     }
