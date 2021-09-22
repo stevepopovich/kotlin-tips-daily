@@ -44,7 +44,8 @@ class TipWorker(context: Context, params: WorkerParameters) : CoroutineWorker(co
 
     private fun createNotification(context: Context, tip: Tip) {
         var builder = NotificationCompat.Builder(context, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_launcher_foreground)
+            // Make icon bigger in status bar
+            .setSmallIcon(R.mipmap.ic_kotlin_daily_foreground)
             .setContentTitle(tip.title)
             .setContentText(tip.content)
             .setAutoCancel(true)
